@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Virtual - Manual de Contratistas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .course-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 1000px;
+            min-height: 600px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            background: linear-gradient(90deg, #2c5aa0 0%, #f39c12 50%, #27ae60 100%);
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .logo-container {
+            margin-bottom: 15px;
+        }
+
+        .logo {
+            height: 60px;
+            width: auto;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.3);
+            height: 8px;
+            border-radius: 4px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: #27ae60;
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .stage {
+            padding: 40px;
+            display: none;
+            min-height: 400px;
+        }
+
+        .stage.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .stage-title {
+            color: #2c5aa0;
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #f39c12;
+            padding-bottom: 10px;
+        }
+
+        .stage-content {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+        }
+
+        .icon {
+            font-size: 48px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .info-box {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .success-box {
+            background: #27ae60;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            left: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #2c5aa0 0%, #3498db 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .nav-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .stage-indicator {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="course-container">
+        <div class="header">
+            <div class="logo-container">
+                <svg class="logo" viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
+                    <!-- UMO Logo -->
+                    <rect x="10" y="20" width="60" height="40" rx="5" fill="#2c5aa0"/>
+                    <text x="40" y="45" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">UMO</text>
+                    
+                    <!-- SEKI Logo -->
+                    <circle cx="120" cy="40" r="25" fill="#f39c12"/>
+                    <text x="120" y="47" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">SEKI</text>
+                    
+                    <!-- NUBO Logo -->
+                    <rect x="180" y="25" width="80" height="30" rx="15" fill="#27ae60"/>
+                    <text x="220" y="44" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">NUBOLAB</text>
+                </svg>
+            </div>
+            <h1>Manual de Seguridad y Salud en el Trabajo</h1>
+            <p>Curso Virtual para Contratistas</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <!-- Etapa 1: Introducción -->
+        <div class="stage active" id="stage-1">
+            <h2 class="stage-title">🏢 Bienvenido a UMO-SEKI-NUBOLAB</h2>
+            <div class="stage-content">
+                <div class="highlight-box">
+                    <h3>Objetivo del Manual</h3>
+                    <p>Establecer lineamientos claros de Seguridad y Salud en el Trabajo que deben cumplir todos los contratistas y subcontratistas.</p>
+                </div>
+                
+                <div class="icon">🛡️</div>
+                
+                <p>Este manual es tu guía esencial para trabajar de manera segura en nuestras instalaciones. Aunque no abarca toda la normatividad legal, incluye los aspectos más relevantes en materia de seguridad laboral.</p>
+                
+                <div class="info-box">
+                    <strong>Importante:</strong> El cumplimiento de este manual no te exime de conocer y aplicar toda la normatividad legal vigente en Colombia.
+                </div>
+
+                <h3>Alcance</h3>
+                <p>Estos requisitos aplican a todo el personal que labora como contratista y subcontratista, tanto dentro como fuera de nuestras instalaciones cuando preste servicios a UMO-SEKI-NUBOLAB.</p>
+            </div>
+        </div>
+
+        <!-- Etapa 2: Tipos de Contratistas -->
+        <div class="stage" id="stage-2">
+            <h2 class="stage-title">👥 Tipos de Contratistas</h2>
+            <div class="stage-content">
+                <div class="icon">🏭</div>
+                
+                <h3>Clasificación según duración del servicio:</h3>
+                
+                <div class="success-box">
+                    <h4>🔄 Contratista Permanente</h4>
+                    <p>Presta servicios durante todos los días de la semana por más de 30 días.</p>
+                    <p><strong>Ejemplos:</strong> Empresas de alimentación, transporte de producto, cargue y descargue.</p>
+                </div>
+
+                <div class="info-box">
+                    <h4>📅 Contratista Frecuente</h4>
+                    <p>Presta servicios entre 1 y 30 días en un mes, de manera recurrente durante el año.</p>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚡ Contratista Ocasional</h4>
+                    <p>Presta un servicio específico en tiempo determinado (incluso horas), sin frecuencia definida. Máximo un mes continuo.</p>
+                </div>
+
+                <h3>Proveedor de Servicio</h3>
+                <p>Persona natural o jurídica que diseña, asesora, fabrica o repara fuera de nuestras instalaciones.</p>
+                <ul>
+                    <li>Consultorías</li>
+                    <li>Proveedores de telecomunicaciones</li>
+                    <li>Recolección de residuos</li>
+                    <li>Transporte ocasional</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Etapa 3: Proceso de Inducción -->
+        <div class="stage" id="stage-3">
+            <h2 class="stage-title">📚 Proceso de Inducción SST</h2>
+            <div class="stage-content">
+                <div class="icon">🎓</div>
+                
+                <div class="highlight-box">
+                    <h3>Inscripción Obligatoria</h3>
+                    <p>Toda empresa debe inscribir a su personal 48 horas antes de la inducción a través del link:</p>
+                    <p><strong>https://forms.office.com/r/5n5wHdPmGw?origin=lprLink</strong></p>
+                </div>
+
+                <h3>📅 Horarios de Inducción</h3>
+                <div class="info-box">
+                    <p><strong>Días:</strong> Miércoles y Viernes</p>
+                    <p><strong>Hora:</strong> 8:00 AM</p>
+                </div>
+
+                <h3>✅ Requisitos para Aprobar</h3>
+                <ul>
+                    <li>Todo contratista nuevo o de reingreso superior a 1 año debe recibir inducción</li>
+                    <li>Se realizará una prueba de conocimiento</li>
+                    <li><strong>Nota mínima:</strong> 80%</li>
+                    <li>Quienes no logren la calificación deben repetir en fecha diferente</li>
+                </ul>
+
+                <div class="success-box">
+                    <h3>🆔 Carné de Identificación</h3>
+                    <p>Al aprobar recibirás un carné que debes mostrar siempre al ingresar. <strong>Vigencia: 1 año</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Etapa 4: Elementos de Protección Personal -->
+        <div class="stage" id="stage-4">
+            <h2 class="stage-title">🦺 Elementos de Protección Personal (EPP)</h2>
+            <div class="stage-content">
+                <div class="icon">⛑️</div>
+                
+                <div class="warning-box">
+                    <h3>⚠️ Uso Obligatorio</h3>
+                    <p>Todo colaborador debe ingresar con EPP acordes a los riesgos de UMO-SEKI-NUBOLAB y a la tarea específica.</p>
+                </div>
+
+                <h3>EPP Básicos Requeridos:</h3>
+                <ul>
+                    <li>🦺 <strong>Casco de seguridad</strong> - Protección contra impactos</li>
+                    <li>👓 <strong>Gafas de seguridad</strong> - Protección ocular</li>
+                    <li>👂 <strong>Protección auditiva</strong> - En áreas de ruido</li>
+                    <li>🧤 <strong>Guantes de trabajo</strong> - Según la actividad</li>
+                    <li>👟 <strong>Calzado de seguridad</strong> - Con puntera metálica</li>
+                    <li>🦺 <strong>Chaleco reflectivo</strong> - Para identificación</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h3>Uniforme de Dotación</h3>
+                    <p>Todo personal debe usar uniforme de dotación durante su jornada. Si la empresa no tiene uniforme, debe dotar de chaleco reflectivo que identifique como contratista.</p>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>Recordatorio:</strong> La no utilización de EPP es causal de sanción y retiro de las instalaciones.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Etapa 5: Trabajos de Alto Riesgo -->
+        <div class="stage" id="stage-5">
+            <h2 class="stage-title">⚠️ Trabajos de Alto Riesgo (TAR)</h2>
+            <div class="stage-content">
+                <div class="icon">🚨</div>
+                
+                <div class="warning-box">
+                    <h3>Tipos de TAR</h3>
+                    <ul>
+                        <li>🪜 <strong>Trabajo en Alturas</strong> - Resolución 4272 de 2021</li>
+                        <li>🔥 <strong>Trabajo en Caliente</strong> - Soldadura, corte, esmerilado</li>
+                        <li>⚡ <strong>Energías Peligrosas</strong> - Bloqueo y etiquetado</li>
+                        <li>🕳️ <strong>Espacios Confinados</strong> - Resolución 0491 de 2020</li>
+                        <li>🏗️ <strong>Izaje de Cargas</strong> - Grúas y equipos de elevación</li>
+                    </ul>
+                </div>
+
+                <h3>📋 Requisitos para TAR</h3>
+                <div class="highlight-box">
+                    <p>Los contratistas que realicen TAR deben:</p>
+                    <ul>
+                        <li>Cumplir normas legales vigentes para cada actividad</li>
+                        <li>Seguir procedimientos de UMO-SEKI-NUBOLAB</li>
+                        <li>Contar con personal certificado</li>
+                        <li>Elaborar AROS (Análisis de Riesgos por Oficio)</li>
+                        <li>Obtener permisos de trabajo específicos</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>Importante:</strong> Todo TAR requiere autorización previa del área de Seguridad y Salud en el Trabajo.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Etapa 6: Accidentes e Incidentes -->
+        <div class="stage" id="stage-6">
+            <h2 class="stage-title">🚑 Manejo de Accidentes e Incidentes</h2>
+            <div class="stage-content">
+                <div class="icon">📞</div>
+                
+                <div class="warning-box">
+                    <h3>🚨 Reporte Inmediato</h3>
+                    <p>En caso de accidente o incidente, reportar INMEDIATAMENTE al área de Seguridad y Salud en el Trabajo de UMO-SEKI-NUBOLAB.</p>
+                </div>
+
+                <h3>⏰ Tiempos de Reporte</h3>
+                <div class="info-box">
+                    <ul>
+                        <li><strong>Inmediato:</strong> Reporte interno a UMO-SEKI-NUBOLAB</li>
+                        <li><strong>48 horas:</strong> Reporte a la ARL correspondiente</li>
+                        <li><strong>5 días hábiles:</strong> Entrega de investigación completa</li>
+                    </ul>
+                </div>
+
+                <h3>📝 Investigación de Accidentes</h3>
+                <div class="highlight-box">
+                    <p>Todo accidente debe ser investigado incluyendo:</p>
+                    <ul>
+                        <li>Causas del evento</li>
+                        <li>Análisis de factores contribuyentes</li>
+                        <li>Acciones de mejoramiento</li>
+                        <li>Medidas preventivas</li>
+                    </ul>
+                </div>
+
+                <div class="success-box">
+                    <p><strong>Reporte Semanal:</strong> Entregar todos los incidentes y accidentes ocurridos con su respectiva investigación.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Etapa 7: Prohibiciones -->
+        <div class="stage" id="stage-7">
+            <h2 class="stage-title">🚫 Prohibiciones Especiales</h2>
+            <div class="stage-content">
+                <div class="icon">🛑</div>
+                
+                <div class="warning-box">
+                    <h3>Prohibiciones Absolutas</h3>
+                    <ul>
+                        <li>🚫 Ingresar en estado de alicoramiento o bajo influencia de drogas</li>
+                        <li>🔫 Portar armas de cualquier tipo</li>
+                        <li>🎧 Usar audífonos durante el trabajo (salvo prescripción médica)</li>
+                        <li>💍 Usar cadenas, anillos, relojes, pulseras durante el trabajo</li>
+                        <li>🍔 Consumir alimentos durante la ejecución de trabajos</li>
+                        <li>🚬 Fumar fuera de las zonas asignadas</li>
+                    </ul>
+                </div>
+
+                <h3>🏢 Restricciones de Acceso</h3>
+                <div class="info-box">
+                    <ul>
+                        <li>No entrar a dependencias donde no tenga labores</li>
+                        <li>No usar herramientas o equipos de UMO-SEKI-NUBOLAB sin autorización</li>
+                        <li>No realizar actividades fuera del alcance del contrato</li>
+                        <li>Permanecer solo en el área asignada</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>⚠️ Consecuencias</h3>
+                    <p>El personal retirado por incumplir estas prohibiciones NO será recibido nuevamente en UMO-SEKI-NUBOLAB.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Etapa 8: Emergencias -->
+        <div class="stage" id="stage-8">
+            <h2 class="stage-title">🚨 Plan de Emergencias</h2>
+            <div class="stage-content">
+                <div class="icon">🆘</div>
+                
+                <div class="warning-box">
+                    <h3>🚨 En Caso de Emergencia</h3>
+                    <p>Acatar INMEDIATAMENTE las órdenes de:</p>
+                    <ul>
+                        <li>Comité de emergencias</li>
+                        <li>Brigada de emergencia</li>
+                        <li>Coordinadores de evacuación</li>
+                    </ul>
+                </div>
+
+                <h3>📍 Señalización de Emergencia</h3>
+                <div class="info-box">
+                    <p>Respetar y seguir toda la señalización de emergencia:</p>
+                    <ul>
+                        <li>🚪 Salidas de emergencia</li>
+                        <li>🧯 Extintores</li>
+                        <li>🚿 Duchas de emergencia</li>
+                        <li>🏥 Botiquines de primeros auxilios</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>🚫 Prohibido Obstruir</h3>
+                    <p>No bloquear equipos de emergencia ni señalización como:</p>
+                    <ul>
+                        <li>Extintores</li>
+                        <li>Salidas de emergencia</li>
+                        <li>Gabinetes contra incendio</li>
+                        <li>Alarmas de emergencia</li>
+                    </ul>
+                </div>
+
+                <div class="success-box">
+                    <p><strong>Recuerda:</strong> Conoce las rutas de evacuación de tu área de trabajo desde el primer día.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Etapa 9: Control de Acceso -->
+        <div class="stage" id="stage-9">
+            <h2 class="stage-title">🚪 Control de Acceso e Identificación</h2>
+            <div class="stage-content">
+                <div class="icon">🆔</div>
+                
+                <div class="highlight-box">
+                    <h3>📱 Documentos Requeridos para Ingreso</h3>
+                    <ul>
+                        <li>🆔 Documento de identidad</li>
+                        <li>🏷️ Carné de la empresa contratista</li>
+                        <li>✅ Carné que acredita aprobación de inducción SST</li>
+                    </ul>
+                </div>
+
+                <h3>🚗 Revisión de Vehículos</h3>
+                <div class="info-box">
+                    <p>Los vehículos de contratistas serán revisados al:</p>
+                    <ul>
+                        <li>Ingresar a las instalaciones</li>
+                        <li>Salir de las instalaciones</li>
+                        <li>Deben cumplir normatividad del Ministerio de Transporte</li>
+                    </ul>
+                </div>
+
+                <h3>🔍 Revisión de Personas y Herramientas</h3>
+                <div class="warning-box">
+                    <p>Serán objeto de revisión:</p>
+                    <ul>
+                        <li>👥 Personas y sus pertenencias</li>
+                        <li>🔧 Herramientas y equipos (inventario)</li>
+                        <li>📋 Todo ingreso/salida será relacionado</li>
+                    </ul>
+                </div>
+
+                <div class="success-box">
+                    <p><strong>Consejo:</strong> Lleva solo lo necesario y ten tus documentos siempre a la mano para agilizar el proceso.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Etapa 10: Responsabilidades y Sanciones -->
+        <div class="stage" id="stage-10">
+            <h2 class="stage-title">⚖️ Responsabilidades y Sanciones</h2>
+            <div class="stage-content">
+                <div class="icon">📋</div>
+                
+                <h3>👥 Tus Responsabilidades como Contratista</h3>
+                <div class="success-box">
+                    <ul>
+                        <li>✅ Cumplir normas de seguridad exigidas</li>
+                        <li>🚪 Permitir acceso al personal autorizado de SST</li>
+                        <li>📝 Llevar a cabo recomendaciones de control de riesgos</li>
+                        <li>📊 Reportar todos los incidentes y accidentes</li>
+                        <li>🔍 Atender visitas y auditorías sin previo aviso</li>
+                    </ul>
+                </div>
+
+                <h3>⚠️ Causales de Sanción</h3>
+                <div class="warning-box">
+                    <ul>
+                        <li>🗑️ Dejar material sobrante en sitio de trabajo</li>
+                        <li>⚔️ Promover actos de violencia</li>
+                        <li>🔧 Operar equipos sin autorización</li>
+                        <li>🚨 Negligencia que cause accidente grave o mortal</li>
+                        <li>💰 Causar daños con pérdida económica</li>
+                        <li>📋 Falsificar documentos o certificados</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>🎯 Compromiso Final</h3>
+                    <p>Al completar este curso, te comprometes a:</p>
+                    <ul>
+                        <li>Aplicar todos los conocimientos adquiridos</li>
+                        <li>Trabajar de manera segura y responsable</li>
+                        <li>Ser un ejemplo de cumplimiento para tu equipo</li>
+                        <li>Contribuir a un ambiente laboral seguro</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>¡Felicitaciones!</strong> Has completado el curso de Seguridad y Salud en el Trabajo. Ahora estás preparado para trabajar de manera segura en UMO-SEKI-NUBOLAB.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn" onclick="changeStage(-1)">⬅️ Anterior</button>
+            <span class="stage-indicator" id="stageIndicator">Etapa 1 de 10</span>
+            <button class="nav-btn" id="nextBtn" onclick="changeStage(1)">Siguiente ➡️</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStage = 1;
+        const totalStages = 10;
+
+        function updateProgress() {
+            const progressFill = document.getElementById('progressFill');
+            const progress = (currentStage / totalStages) * 100;
+            progressFill.style.width = progress + '%';
+        }
+
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const stageIndicator = document.getElementById('stageIndicator');
+
+            prevBtn.disabled = currentStage === 1;
+            nextBtn.disabled = currentStage === totalStages;
+            
+            if (currentStage === totalStages) {
+                nextBtn.textContent = '✅ Finalizar';
+            } else {
+                nextBtn.textContent = 'Siguiente ➡️';
+            }
+
+            stageIndicator.textContent = `Etapa ${currentStage} de ${totalStages}`;
+        }
+
+        function showStage(stageNumber) {
+            // Hide all stages
+            for (let i = 1; i <= totalStages; i++) {
+                const stage = document.getElementById(`stage-${i}`);
+                stage.classList.remove('active');
+            }
+            
+            // Show current stage
+            const currentStageEl = document.getElementById(`stage-${stageNumber}`);
+            currentStageEl.classList.add('active');
+            
+            updateProgress();
+            updateNavigation();
+        }
+
+        function changeStage(direction) {
+            const newStage = currentStage + direction;
+            
+            if (newStage >= 1 && newStage <= totalStages) {
+                currentStage = newStage;
+                showStage(currentStage);
+            }
+            
+            if (currentStage === totalStages && direction === 1) {
+                alert('¡Felicitaciones! Has completado el curso de Seguridad y Salud en el Trabajo para Contratistas de UMO-SEKI-NUBOLAB. Ahora estás preparado para trabajar de manera segura en nuestras instalaciones.');
+            }
+        }
+
+        // Initialize
+        updateProgress();
+        updateNavigation();
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowLeft') {
+                changeStage(-1);
+            } else if (event.key === 'ArrowRight') {
+                changeStage(1);
+            }
+        });
+    </script>
+</body>
+</html>
