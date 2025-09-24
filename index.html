@@ -601,7 +601,7 @@
             prevBtn.disabled = currentStage === 1;
             nextBtn.disabled = currentStage === totalStages;
             
-            if (currentStage === totalStages) {
+            if (currentStage === totalStages+1) {
                 nextBtn.textContent = '✅ Finalizar';
             } else {
                 nextBtn.textContent = 'Siguiente ➡️';
