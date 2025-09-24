@@ -571,6 +571,18 @@
                 </div>
             </div>
         </div>
+
+        <!-- Etapa 11: Felicitaciones -->
+        <div class="stage" id="stage-11">
+            <h2 class="stage-title">¡Felicitaciones!</h2>
+            <div class="stage-content">
+                <h3>UMO-SEKI-NUBO</h3>
+                <div class="success-box">
+                </div>
+            </div>
+        </div>
+        
+        
         <div class="info-box">
         <p><strong>¡Felicitaciones!</strong> Has completado el curso de Seguridad y Salud en el Trabajo. Ahora estás preparado para trabajar de manera segura en UMO-SEKI-NUBOLAB.</p>
         </div>
@@ -583,7 +595,7 @@
 
     <script>
         let currentStage = 1;
-        const totalStages = 10;
+        const totalStages = 11;
 
         function updateProgress() {
             const progressFill = document.getElementById('progressFill');
@@ -631,7 +643,7 @@
                 showStage(currentStage);
             }
             
-            if (currentStage-1 === totalStages && direction === 1) {
+            if (currentStage === totalStages && direction === 1) {
                 alert('¡Felicitaciones! Has completado el curso de Seguridad y Salud en el Trabajo para Contratistas de UMO-SEKI-NUBOLAB. Ahora estás preparado para trabajar de manera segura en nuestras instalaciones.');
             }
         }
